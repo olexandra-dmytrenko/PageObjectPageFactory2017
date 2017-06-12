@@ -3,6 +3,8 @@ package pageobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 import utils.Waiters;
 
 import static utils.Waiters.WAIT_60;
@@ -12,7 +14,10 @@ import static utils.Waiters.WAIT_60;
  */
 public class GoogleResultPage extends Page {
 
-    private static final By BY_LINK_TEXT_AUTO_PRACTICE = By.linkText("Automation Practice");
+    @FindBy(partialLinkText = "Automation Practice")
+    @CacheLookup
+    private WebElement autoSite;
+//    private static final By BY_LINK_TEXT_AUTO_PRACTICE = By.linkText("Automation Practice");
     public static final String URL_AUTOPRACTICE = "http://automationpractice.com/index.php";
 
     GoogleResultPage(WebDriver driver) {
@@ -26,7 +31,7 @@ public class GoogleResultPage extends Page {
     }
 
     public void redirectToAutoPracticeSite() {
-        WebElement autoSite = driver.findElement(BY_LINK_TEXT_AUTO_PRACTICE);
+//        WebElement autoSite = driver.findElement(BY_LINK_TEXT_AUTO_PRACTICE);
         autoSite.click();
         Waiters.waitForUrl(driver, URL_AUTOPRACTICE, WAIT_60);
     }
