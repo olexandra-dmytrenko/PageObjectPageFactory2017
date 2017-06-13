@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Created by olexandra on 6/11/17.
+ * Download driver from here: https://github.com/mozilla/geckodriver/releases
  */
 public class FindSite {
     private WebDriver driver;
