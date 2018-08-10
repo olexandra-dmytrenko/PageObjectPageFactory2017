@@ -20,7 +20,7 @@ public class FindSite {
 
     @Before
     public void startDriver() {
-        System.setProperty("webdriver.chrome.driver", "/Users/olexandra/IdeaProjects/PageObjectPageFactory2017/chromedriver_mac64");
+//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
     }
 
