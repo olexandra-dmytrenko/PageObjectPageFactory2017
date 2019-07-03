@@ -21,6 +21,7 @@ public class FindSite {
     @Before
     public void startDriver() {
 //        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver_mac64");
         driver = new ChromeDriver();
     }
 
