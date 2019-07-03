@@ -1,10 +1,11 @@
+package one_goodoldtest;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,7 +23,7 @@ public class FindSite {
     public void startDriver() {
 //        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         System.setProperty("webdriver.chrome.driver", "chromedriver_mac64");
-        driver = new ChromeDriver();
+
     }
 
     @Test
