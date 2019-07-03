@@ -1,6 +1,7 @@
 package two_pageobject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class GoogleSearchPage extends Page{
@@ -8,6 +9,11 @@ public class GoogleSearchPage extends Page{
 
     public GoogleSearchPage() {
         super();
+        open();
+    }
+
+    public GoogleSearchPage(WebDriver driver) {
+        super(driver);
         open();
     }
 
@@ -19,6 +25,6 @@ public class GoogleSearchPage extends Page{
         WebElement searchField = driver.findElement(By.name("q"));
         searchField.sendKeys(text);
         searchField.submit();
-        return new GoogleResultPage();
+        return new GoogleResultPage(driver);
     }
 }

@@ -1,6 +1,10 @@
 package two_pageobject;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,10 +13,19 @@ import static org.junit.Assert.assertEquals;
  */
 public class FindSite {
 
+    private WebDriver driver;
+
+    @Before
+    public void startDriver() {
+//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver_mac64");
+        driver = new ChromeDriver();
+    }
+
     @Test
     public void findSitePage() {
         //GIVEN
-        GoogleSearchPage googleSearchPage = new GoogleSearchPage();
+        GoogleSearchPage googleSearchPage = new GoogleSearchPage(driver);
         GoogleResultPage results = googleSearchPage.search("automationpractice");
 
         //WHEN
@@ -24,8 +37,8 @@ public class FindSite {
     }
 
 
-//    @After
-//    public void stutDownDriver() {
-//        driver.close();
-//    }
+    @After
+    public void stutDownDriver() {
+        driver.close();
+    }
 }

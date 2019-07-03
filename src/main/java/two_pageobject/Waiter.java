@@ -6,14 +6,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public class Waiter extends Page {
+public class Waiter {
 
-    public Waiter(){
-        super();
-    }
+    private final WebDriver driver;
 
     public Waiter(WebDriver driver) {
-
+        this.driver = driver;
     }
 
     public void waitForUrl(String url) {

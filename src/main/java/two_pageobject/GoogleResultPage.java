@@ -1,12 +1,13 @@
 package two_pageobject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class GoogleResultPage extends Page{
 
-    public GoogleResultPage(){
-        super();
+    public GoogleResultPage(WebDriver driver){
+        super(driver);
     }
 
     public void getPartialLinkUrl(String text, String url) {
