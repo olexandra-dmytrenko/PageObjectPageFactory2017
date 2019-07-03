@@ -30,11 +30,11 @@ public class FindSite {
         driver.get("http://google.com.ua/");
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebElement searchField = driver.findElement(By.id("lst-ib"));
+        WebElement searchField = driver.findElement(By.name("q"));
         searchField.sendKeys("automationpractice");
         searchField.submit();
 
-        WebElement autoSite = driver.findElement(By.linkText("Automation Practice"));
+        WebElement autoSite = driver.findElement(By.partialLinkText("Automation Practice"));
         autoSite.click();
 
         wait.until(ExpectedConditions.urlToBe("http://automationpractice.com/index.php"));
