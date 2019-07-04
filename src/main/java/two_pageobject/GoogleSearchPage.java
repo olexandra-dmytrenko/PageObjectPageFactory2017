@@ -3,28 +3,35 @@ package two_pageobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class GoogleSearchPage extends Page{
-    private static final String LINK_GOOGLE = "http://google.com.ua/";
+import java.util.concurrent.TimeUnit;
 
-    public GoogleSearchPage() {
-        super();
-        open();
-    }
+import util.Waiter;
+
+public class GoogleSearchPage {
+    private static final String GOOGLE_LINK = "http://google.com.ua/";
+    WebDriver driver;
+
+    @CacheLookup
+    @FindBy(name = "q")
+    WebElement searchField;
 
     public GoogleSearchPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
         open();
     }
 
-    private void open(){
-        driver.get(LINK_GOOGLE);
+    private void open() {
+        driver.get(GOOGLE_LINK);
+        Waiter.implicitWait(driver, Waiter.TIME_10, TimeUnit.SECONDS);
     }
 
     public GoogleResultPage search(String text) {
-        WebElement searchField = driver.findElement(By.name("q"));
         searchField.sendKeys(text);
         searchField.submit();
-        return new GoogleResultPage(driver);
+        return PageFactory.initElements(driver, GoogleResultPage.class);
     }
 }

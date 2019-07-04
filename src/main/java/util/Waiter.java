@@ -8,18 +8,15 @@ import java.util.concurrent.TimeUnit;
 
 public class Waiter {
 
-    private final WebDriver driver;
+    public static final int TIME_10 = 10;
+    public static final int TIME_60 = 60;
 
-    public Waiter(WebDriver driver) {
-        this.driver = driver;
+    public static void implicitWait(WebDriver driver, int time, TimeUnit timeUnit) {
+        driver.manage().timeouts().implicitlyWait(time, timeUnit);
     }
 
-    public void waitForUrl(String url) {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+    public static void waitForUrl(WebDriver driver, int time, String url) {
+        WebDriverWait wait = new WebDriverWait(driver, time);
         wait.until(ExpectedConditions.urlToBe(url));
-    }
-
-    public void implicitWait() {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 }

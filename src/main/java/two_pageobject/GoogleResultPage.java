@@ -3,16 +3,27 @@ package two_pageobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class GoogleResultPage extends Page{
+import util.Waiter;
 
-    public GoogleResultPage(WebDriver driver){
-        super(driver);
+import static util.Waiter.waitForUrl;
+
+public class GoogleResultPage {
+
+    public static final String URL_AUTO_PRACTICE = "http://automationpractice.com/index.php";
+    WebDriver driver;
+
+    @FindBy(partialLinkText = "Automation Practice")
+    WebElement autoSite;
+
+
+    public GoogleResultPage(WebDriver driver) {
+        this.driver = driver;
     }
 
-    public void getPartialLinkUrl(String text, String url) {
-        WebElement autoSite = driver.findElement(By.partialLinkText(text));
+    public void openUrlByName(String urlName, String url) {
         autoSite.click();
-        waiter.waitForUrl(url);
+        waitForUrl(driver, Waiter.TIME_60, URL_AUTO_PRACTICE);
     }
 }

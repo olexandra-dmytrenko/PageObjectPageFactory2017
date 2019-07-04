@@ -7,17 +7,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import two_pageobject.GoogleResultPage;
+import two_pageobject.GoogleSearchPage;
+import util.Waiter;
+
 import static org.junit.Assert.assertEquals;
+import static two_pageobject.GoogleResultPage.URL_AUTO_PRACTICE;
 
 /**
  * Created by olexandra on 6/11/17.
  */
 public class FindSite {
+
     private WebDriver driver;
 
     @Before
@@ -29,19 +34,15 @@ public class FindSite {
 
     @Test
     public void findSitePage() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        driver.get("http://google.com.ua/");
+        //Given
+        GoogleSearchPage searchPage = PageFactory.initElements(driver, GoogleSearchPage.class);
+        GoogleResultPage resultPage = searchPage.search("automationpractice");
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebElement searchField = driver.findElement(By.name("q"));
-        searchField.sendKeys("automationpractice");
-        searchField.submit();
+        //WHEN
+        resultPage.openUrlByName("Automation Practice", URL_AUTO_PRACTICE);
 
-        WebElement autoSite = driver.findElement(By.partialLinkText("Automation Practice"));
-        autoSite.click();
-
-        wait.until(ExpectedConditions.urlToBe("http://automationpractice.com/index.php"));
-        assertEquals("http://automationpractice.com/index.php", driver.getCurrentUrl());
+        //THEN
+        assertEquals(URL_AUTO_PRACTICE, driver.getCurrentUrl());
     }
 
     @After
