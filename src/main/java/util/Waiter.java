@@ -1,4 +1,4 @@
-package two_pageobject;
+package util;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
